@@ -4,9 +4,48 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #F7F7FB;
-  color: #1E1E2D;
+  background-color: #0b0c10;
+  color: #f4f1ea;
+}
+
+::selection {
+  background: rgba(212, 176, 106, 0.35);
+  color: #f4f1ea;
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-gold;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-6 py-3.5 text-sm font-semibold text-onGold shadow-gold transition hover:bg-goldLight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-lineStrong bg-card px-6 py-3.5 text-sm font-semibold text-text transition hover:border-gold/50 hover:bg-raised focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+  .panel {
+    @apply rounded-2xl border border-line bg-card;
+  }
+  .icon-tile {
+    @apply flex items-center justify-center rounded-xl border border-gold/30 bg-gold/10 text-gold;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-text outline-none transition placeholder:text-muted focus:border-gold/60 focus:ring-2 focus:ring-gold/20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

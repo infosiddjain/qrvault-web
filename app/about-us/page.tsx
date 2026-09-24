@@ -1,43 +1,52 @@
 import type { Metadata } from 'next';
+import {
+  IoFlashOutline,
+  IoLockClosedOutline,
+  IoPhonePortraitOutline,
+} from 'react-icons/io5';
 import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
-  title: 'About us — QR Vault',
+  title: 'About | QR Vault',
 };
 
-const STATS = [
-  { title: 'Fast', desc: 'Generate a code in seconds' },
-  { title: 'Private', desc: 'Password protection built in' },
-  { title: 'Local', desc: 'Your data stays on your device' },
+const PILLARS = [
+  { icon: IoFlashOutline, title: 'Fast', desc: 'A new code in seconds, with no sign-up standing in the way.' },
+  { icon: IoLockClosedOutline, title: 'Private', desc: 'Password protection is built in for anything sensitive.' },
+  { icon: IoPhonePortraitOutline, title: 'On-device', desc: 'Your data stays on your phone. We never see it.' },
 ];
 
 export default function AboutUsPage() {
   return (
     <div>
-      <PageHero title="About us" subtitle="Who we are and why we built this" />
+      <PageHero
+        eyebrow="About"
+        title="Built for quiet confidence"
+        subtitle="Why we made QR Vault, and the principles behind it."
+      />
 
-      <div className="mx-auto max-w-3xl px-6 py-14">
-        <p className="text-sm leading-relaxed text-muted md:text-base">
-          QR Vault helps you create, organize, and securely store your QR
-          codes in one simple place. Whether you&apos;re sharing contact
-          details, Wi-Fi credentials, or private notes, you can generate a
-          code in seconds and keep it protected with a password whenever you
-          need extra privacy.
-        </p>
-        <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
-          We built this app with a focus on simplicity, speed, and privacy —
-          no accounts required, no data sent anywhere it doesn&apos;t need to
-          go. Everything stays on your device.
-        </p>
+      <div className="mx-auto max-w-3xl px-6 py-16">
+        <div className="space-y-6 text-base leading-relaxed text-soft md:text-lg">
+          <p>
+            QR Vault helps you create, organise and securely keep your QR codes
+            in one place. Whether you&apos;re sharing contact details, Wi-Fi
+            access or private notes, you can make a code in seconds and lock it
+            with a password whenever it needs extra privacy.
+          </p>
+          <p>
+            We built it around simplicity, speed and privacy. No accounts, no
+            servers, no tracking. Everything stays on your device.
+          </p>
+        </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {STATS.map(stat => (
-            <div
-              key={stat.title}
-              className="rounded-2xl border border-border bg-white p-5 text-center"
-            >
-              <p className="text-base font-bold text-dark">{stat.title}</p>
-              <p className="mt-1 text-xs text-muted">{stat.desc}</p>
+        <div className="mt-14 grid gap-4 sm:grid-cols-3">
+          {PILLARS.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="panel p-6">
+              <span className="icon-tile h-11 w-11">
+                <Icon size={20} aria-hidden />
+              </span>
+              <p className="mt-5 text-base font-semibold text-text">{title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-soft">{desc}</p>
             </div>
           ))}
         </div>

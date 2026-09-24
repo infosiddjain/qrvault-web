@@ -1,84 +1,95 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { IoSendOutline, IoCheckmarkCircle } from 'react-icons/io5';
+import { SUPPORT_EMAIL } from './site';
 
+// There is no backend, so the form hands off to the visitor's mail app with
+// everything pre-filled instead of pretending the message was sent.
 export default function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [opened, setOpened] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Wire this up to your backend / email service (e.g. an API route,
-    // Resend, Formspree, etc.) — this just simulates a submission.
-    setSubmitted(true);
+    const subject = `QR Vault enquiry from ${name.trim()}`;
+    const body = `${message.trim()}\n\n${name.trim()}\n${email.trim()}`;
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+    setOpened(true);
   };
 
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-border bg-white p-8 text-center">
-        <p className="text-base font-bold text-dark">Message sent</p>
-        <p className="mt-2 text-sm text-muted">
-          Thanks, {name || 'there'} — we&apos;ll get back to you soon.
+  return (
+    <form onSubmit={handleSubmit} className="panel space-y-5 p-6 md:p-8">
+      <div>
+        <h2 className="font-display text-2xl font-semibold text-text">Send a message</h2>
+        <p className="mt-1 text-sm text-soft">
+          This opens your email app with the message ready to send.
         </p>
       </div>
-    );
-  }
 
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 rounded-2xl border border-border bg-white p-6"
-    >
-      <div>
-        <label className="mb-1.5 block text-xs font-semibold text-muted">
-          Name
-        </label>
-        <input
-          required
-          value={name}
-          onChange={e => setName(e.target.value)}
-          type="text"
-          placeholder="Your name"
-          className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-        />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="cf-name" className="mb-2 block text-xs font-medium text-soft">
+            Name
+          </label>
+          <input
+            id="cf-name"
+            required
+            value={name}
+            onChange={e => setName(e.target.value)}
+            type="text"
+            autoComplete="name"
+            placeholder="Your name"
+            className="field"
+          />
+        </div>
+        <div>
+          <label htmlFor="cf-email" className="mb-2 block text-xs font-medium text-soft">
+            Email
+          </label>
+          <input
+            id="cf-email"
+            required
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            className="field"
+          />
+        </div>
       </div>
 
       <div>
-        <label className="mb-1.5 block text-xs font-semibold text-muted">
-          Email
-        </label>
-        <input
-          required
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          type="email"
-          placeholder="you@example.com"
-          className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-dark outline-none focus:border-primary"
-        />
-      </div>
-
-      <div>
-        <label className="mb-1.5 block text-xs font-semibold text-muted">
+        <label htmlFor="cf-message" className="mb-2 block text-xs font-medium text-soft">
           Message
         </label>
         <textarea
+          id="cf-message"
           required
           value={message}
           onChange={e => setMessage(e.target.value)}
           placeholder="How can we help?"
-          rows={4}
-          className="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-sm text-dark outline-none focus:border-primary"
+          rows={5}
+          className="field resize-none"
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-xl bg-primary py-3 text-sm font-bold text-white transition-transform hover:scale-[1.01]"
-      >
+      <button type="submit" className="btn-gold w-full">
+        <IoSendOutline aria-hidden />
         Send message
       </button>
+
+      {opened && (
+        <p role="status" className="flex items-center gap-2 text-sm text-soft">
+          <IoCheckmarkCircle className="shrink-0 text-gold" aria-hidden />
+          Your email app should now be open. If not, write to {SUPPORT_EMAIL}.
+        </p>
+      )}
     </form>
   );
 }

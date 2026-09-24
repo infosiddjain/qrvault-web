@@ -1,22 +1,29 @@
 export default function PageHero({
+  eyebrow,
   title,
   subtitle,
 }: {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
 }) {
   return (
-    <div className="border-b border-border bg-white">
-      <div className="mx-auto max-w-4xl px-6 py-14 text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight text-dark md:text-4xl">
+    <section className="relative overflow-hidden border-b border-line">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-3xl px-6 py-16 text-center md:py-20">
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-text md:text-5xl">
           {title}
         </h1>
         {subtitle && (
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted md:text-base">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-soft">
             {subtitle}
           </p>
         )}
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,91 +1,58 @@
-import type { Metadata } from "next";
-import PageHero from "@/components/PageHero";
+import type { Metadata } from 'next';
+import type { IconType } from 'react-icons';
+import {
+  IoNotificationsOutline,
+  IoChatbubbleEllipsesOutline,
+  IoBriefcaseOutline,
+  IoFlowerOutline,
+  IoHardwareChipOutline,
+  IoCalculatorOutline,
+  IoSchoolOutline,
+  IoLogoGooglePlaystore,
+} from 'react-icons/io5';
+import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
-  title: "Our apps — QR Vault",
+  title: 'Our apps | QR Vault',
 };
 
-const APPS = [
-  {
-    id: "1",
-    name: "Silent Reminder",
-    desc: "Silent reminders with vibration alerts",
-    icon: "notifications-outline",
-    url: "https://play.google.com/store/apps/details?id=com.silentreminder",
-    primary: false,
-  },
-  {
-    id: "2",
-    name: "Pickup VibeLines",
-    desc: "Fun and clever pickup lines",
-    icon: "chatbubble-ellipses-outline",
-    url: "https://play.google.com/store/apps/details?id=com.pickupline",
-  },
-  {
-    id: "3",
-    name: "Hot Job",
-    desc: "Find jobs that match you",
-    icon: "briefcase-outline",
-    url: "https://play.google.com/store/apps/details?id=com.hotjob",
-  },
-  {
-    id: "4",
-    name: "Dil Ki Bhakti",
-    desc: "Spiritual blog & devotional content",
-    icon: "flower-outline",
-    url: "https://play.google.com/store/apps/details?id=com.dilkibhaktiapp",
-  },
-  {
-    id: "5",
-    name: "CpuKit",
-    desc: "Android device info & diagnostics",
-    icon: "hardware-chip-outline",
-    url: "https://play.google.com/store/apps/details?id=com.cpukit",
-  },
-  {
-    id: "6",
-    name: "Calculator Zip",
-    desc: "Fast, simple everyday calculator",
-    icon: "calculator-outline",
-    url: "https://play.google.com/store/apps/details?id=com.calculatorzip",
-  },
-  {
-    id: "7",
-    name: "Math Adventure",
-    desc: "Fun math learning game for kids",
-    icon: "school-outline",
-    url: "https://play.google.com/store/apps/details?id=com.mathadvancer",
-  },
+const APPS: { name: string; desc: string; icon: IconType; url: string }[] = [
+  { name: 'Silent Reminder', desc: 'Silent reminders with vibration alerts', icon: IoNotificationsOutline, url: 'https://play.google.com/store/apps/details?id=com.silentreminder' },
+  { name: 'Pickup VibeLines', desc: 'Fun and clever pickup lines', icon: IoChatbubbleEllipsesOutline, url: 'https://play.google.com/store/apps/details?id=com.pickupline' },
+  { name: 'Hot Job', desc: 'Find jobs that match you', icon: IoBriefcaseOutline, url: 'https://play.google.com/store/apps/details?id=com.hotjob' },
+  { name: 'Dil Ki Bhakti', desc: 'Spiritual blog and devotional content', icon: IoFlowerOutline, url: 'https://play.google.com/store/apps/details?id=com.dilkibhaktiapp' },
+  { name: 'CpuKit', desc: 'Android device info and diagnostics', icon: IoHardwareChipOutline, url: 'https://play.google.com/store/apps/details?id=com.cpukit' },
+  { name: 'Calculator Zip', desc: 'Fast, simple everyday calculator', icon: IoCalculatorOutline, url: 'https://play.google.com/store/apps/details?id=com.calculatorzip' },
+  { name: 'Math Adventure', desc: 'Fun math learning game for kids', icon: IoSchoolOutline, url: 'https://play.google.com/store/apps/details?id=com.mathadvancer' },
 ];
 
 export default function OurAppsPage() {
   return (
     <div>
-      <PageHero title="Our apps" subtitle="More apps you might like" />
+      <PageHero
+        eyebrow="Our apps"
+        title="Thoughtfully made"
+        subtitle="More apps from the team behind QR Vault, all on Google Play."
+      />
 
-      <div className="mx-auto max-w-3xl px-6 py-14">
-        <div className="space-y-4">
-          {APPS.map((app) => (
+      <div className="mx-auto max-w-page px-6 py-16">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {APPS.map(({ name, desc, icon: Icon, url }) => (
             <a
-              key={app.name}
-              href={app.url}
-              className={`flex items-center justify-between rounded-2xl border p-5 transition-colors ${
-                app.primary
-                  ? "border-primary bg-primaryLight"
-                  : "border-border bg-white hover:border-primary"
-              }`}
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="panel group flex flex-col p-6 transition-colors hover:border-gold/40 hover:bg-raised"
             >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white font-bold">
-                  {app.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-dark">{app.name}</p>
-                  <p className="mt-0.5 text-xs text-muted">{app.desc}</p>
-                </div>
-              </div>
-              <span className="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-primary shadow-sm">
-                Get
+              <span className="icon-tile h-12 w-12">
+                <Icon size={22} aria-hidden />
+              </span>
+              <p className="mt-5 text-base font-semibold text-text">{name}</p>
+              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-soft">{desc}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold">
+                <IoLogoGooglePlaystore aria-hidden />
+                Get it on Google Play
               </span>
             </a>
           ))}
