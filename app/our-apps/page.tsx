@@ -11,10 +11,14 @@ import {
   IoLogoGooglePlaystore,
 } from 'react-icons/io5';
 import PageHero from '@/components/PageHero';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Our apps | QR Vault',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Our apps',
+  description:
+    'Discover more Android apps from the team behind QR Vault, including Silent Reminder, CpuKit, Calculator Zip and Math Adventure, all on Google Play.',
+  path: '/our-apps',
+});
 
 const APPS: { name: string; desc: string; icon: IconType; url: string }[] = [
   { name: 'Silent Reminder', desc: 'Silent reminders with vibration alerts', icon: IoNotificationsOutline, url: 'https://play.google.com/store/apps/details?id=com.silentreminder' },

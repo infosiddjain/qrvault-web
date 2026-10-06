@@ -6,12 +6,16 @@ import {
   IoTimeOutline,
 } from 'react-icons/io5';
 import PageHero from '@/components/PageHero';
+import { pageMetadata } from '@/lib/seo';
 import ContactForm from '@/components/ContactForm';
 import { SUPPORT_EMAIL } from '@/components/site';
 
-export const metadata: Metadata = {
-  title: 'Contact | QR Vault',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact',
+  description:
+    'Get in touch with the QR Vault team. Ask a question, report a bug or suggest a feature by email or through our contact form.',
+  path: '/contact-us',
+});
 
 const CONTACT_OPTIONS = [
   {

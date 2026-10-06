@@ -12,3 +12,7 @@ export const LEGAL_LINKS = [
   { href: '/privacy-policy', label: 'Privacy policy' },
   { href: '/terms-conditions', label: 'Terms & conditions' },
 ];
+
+// Canonical origin used for metadata, sitemap and structured data.
+export const SITE_URL = 'https://qrvault-web.vercel.app';
+export const SITE_NAME = 'QR Vault';

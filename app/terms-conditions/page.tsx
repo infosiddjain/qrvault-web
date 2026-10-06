@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
+import { pageMetadata } from '@/lib/seo';
 import LegalContent from '@/components/LegalContent';
 
-export const metadata: Metadata = {
-  title: 'Terms & conditions | QR Vault',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Terms & conditions',
+  description:
+    'Terms and conditions for using the QR Vault app to create, view and manage QR codes.',
+  path: '/terms-conditions',
+});
 
 const SECTIONS = [
   {

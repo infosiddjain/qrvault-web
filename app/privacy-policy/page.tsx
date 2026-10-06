@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
+import { pageMetadata } from '@/lib/seo';
 import LegalContent from '@/components/LegalContent';
 
-export const metadata: Metadata = {
-  title: 'Privacy policy | QR Vault',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Privacy policy',
+  description:
+    'QR Vault privacy policy: no account needed, no personal data collected. Your QR codes and passwords are stored only on your device.',
+  path: '/privacy-policy',
+});
 
 const SECTIONS = [
   {

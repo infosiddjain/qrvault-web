@@ -5,10 +5,14 @@ import {
   IoPhonePortraitOutline,
 } from 'react-icons/io5';
 import PageHero from '@/components/PageHero';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'About | QR Vault',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'About',
+  description:
+    'Why we built QR Vault: a fast, private QR code app with built-in password protection, no accounts and no tracking. Everything stays on your device.',
+  path: '/about-us',
+});
 
 const PILLARS = [
   { icon: IoFlashOutline, title: 'Fast', desc: 'A new code in seconds, with no sign-up standing in the way.' },

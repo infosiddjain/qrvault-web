@@ -94,7 +94,7 @@ export default function HomePage() {
               <span className="italic text-gold">beautifully</span> kept.
             </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-soft md:text-lg">
-              Create codes for contact details, Wi-Fi, links and notes. Lock the
+              Create QR codes for contact details, Wi-Fi, links and notes. Lock the
               private ones with a password. Everything stays on your device.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
